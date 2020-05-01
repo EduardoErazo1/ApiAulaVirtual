@@ -49,6 +49,18 @@ Route::put('/curso/{id}','cursosController@UpdateCurso');
 Route::Delete('/curso/{id}','cursosController@DeleteCurso');
 Route::get('/curso','cursosController@ReadCurso');
 Route::get('/curso/{id}','cursosController@ObtainCurso');
+//Rutas de Documentos
+Route::post('/doc','documentosController@InsertDocumento');
+Route::put('/doc/{id}','documentosController@UpdateDocumento');
+Route::Delete('/doc/{id}','documentosController@DeleteDocumento');
+Route::get('/doc','documentosController@ReadDocumento');
+Route::get('/doc/{id}','documentosController@ObtainDocumento');
+//Rutas de Agendas
+Route::post('/agenda','agendasController@InsertAgenda');
+Route::put('/agenda/{id}','agendasController@UpdateAgenda');
+Route::Delete('/agenda/{id}','agendasController@DeleteAgenda');
+Route::get('/agenda','agendasController@ReadAgenda');
+Route::get('/agenda/{id}','agendasController@ObtainAgenda');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
