@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Models\Alumno_Grupo;
+use DB;
 
 class alumno_gruposController extends Controller
 {
     
-    public function AsignarMaestro(Request $request)
+    public function AsignarAlumno(Request $request)
     {
        try
        {
         $request->all();
-        $asig = Maestro_Grupo;    
+        $asig = new Alumno_Grupo;    
         $asig->Id_Alumno = $request->input('cod');         
         $asig->Codigo_Grupo = $request->input('cod2');      
         $x = $asig->save();  
@@ -25,18 +28,18 @@ class alumno_gruposController extends Controller
        }
         
     }
-    public function ReasignarMaestro(Request $request, $id)
+    public function ReasignarAlumno(Request $request, $id)
     {
         try
         {
-        $asig = Maestro_Grupo::where('Id', $id)->first(); 
+        $asig = Alumno_Grupo::where('Id', $id)->first(); 
        if($asig->count()>0)
         {                
         $asig->Id_Alumno = $request->input('cod');         
         $asig->Codigo_Grupo = $request->input('cod2');      
-            $return = DB::table('maestro_grupos')->where('Id', $id)->update([
-                'Id_Alumno' => $agenda->Id_Alumno,
-                'Codigo_Grupo' => $agenda->Codigo_Grupo,
+            $return = DB::table('alumno_grupos')->where('Id', $id)->update([
+                'Id_Alumno' => $asig->Id_Alumno,
+                'Codigo_Grupo' => $asig->Codigo_Grupo,
             ]);
             if($return){
                 return 'Actualizado correctamente';
@@ -51,7 +54,7 @@ class alumno_gruposController extends Controller
     {
         try
         {
-            $asig = DB::table('maestro_grupos')->select()->get();
+            $asig = DB::table('alumno_grupos')->select()->get();
             return $asig;
             
         }

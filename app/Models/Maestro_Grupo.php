@@ -3,6 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Maestro_Grupo extends Model
 {
+    protected $table = 'maestro_grupos';
     public function maestro()
     {
         return $this->belongsTo('App\Models\Maestro');

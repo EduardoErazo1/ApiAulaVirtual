@@ -61,6 +61,16 @@ Route::put('/agenda/{id}','agendasController@UpdateAgenda');
 Route::Delete('/agenda/{id}','agendasController@DeleteAgenda');
 Route::get('/agenda','agendasController@ReadAgenda');
 Route::get('/agenda/{id}','agendasController@ObtainAgenda');
+//Rutas de Asignacion Maestro
+Route::post('/asigm','maestro_gruposController@AsignarMaestro');
+Route::put('/asigm/{id}','maestro_gruposController@ReasignarMaestro');
+Route::get('/asigm','maestro_gruposController@ReadAsignacion');
+Route::get('/asigm/{id}','maestro_gruposController@ObtainAsignacion');
+//Rutas de Asignacion Alumno
+Route::post('/asiga','alumno_gruposController@AsignarAlumno');
+Route::put('/asiga/{id}','alumno_gruposController@ReasignarAlumno');
+Route::get('/asiga','alumno_gruposController@ReadAsignacion');
+Route::get('/asiga/{id}','alumno_gruposController@ObtainAsignacion');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

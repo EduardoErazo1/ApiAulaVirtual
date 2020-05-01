@@ -3,6 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Grupo extends Model
 {
+    
     public function Curso()
     {
         return $this->hasMany('App\Models\Curso');

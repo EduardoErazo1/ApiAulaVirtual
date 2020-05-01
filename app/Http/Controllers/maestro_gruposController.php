@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\Agenda;
+use App\Models\Maestro_Grupo;
 use DB;
 
-class maestroo_gruposController extends Controller
+class maestro_gruposController extends Controller
 {
     public function AsignarMaestro(Request $request)
     {
        try
        {
         $request->all();
-        $asig = Maestro_Grupo;    
+        $asig = new Maestro_Grupo;    
         $asig->Id_Maestro = $request->input('cod');         
         $asig->Codigo_Grupo = $request->input('cod2');      
         $x = $asig->save();  
@@ -37,8 +37,8 @@ class maestroo_gruposController extends Controller
         $asig->Id_Maestro = $request->input('cod');         
         $asig->Codigo_Grupo = $request->input('cod2');      
             $return = DB::table('maestro_grupos')->where('Id', $id)->update([
-                'Id_Maestro' => $agenda->Id_Maestro,
-                'Codigo_Grupo' => $agenda->Codigo_Grupo,
+                'Id_Maestro' => $asig->Id_Maestro,
+                'Codigo_Grupo' => $asig->Codigo_Grupo,
             ]);
             if($return){
                 return 'Actualizado correctamente';
