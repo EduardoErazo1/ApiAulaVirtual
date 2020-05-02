@@ -2,13 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\estadosController;
-use App\Http\Controllers\credencialesController;
-use App\Http\Controllers\alumnosController;
-use App\Http\Controllers\maestrosController;
+header('Access-Control-Allow-Origin: *');
+//Access-Control-Allow-Origin: *
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
+
 
 //Rutas de estado
-Route::post('/estado','estadosController@InsertEstado');
+
+    Route::post('/estado','estadosController@InsertEstado');
 Route::put('estado/{id}', 'estadosController@UpdateEstado');
 Route::delete('estado/{id}', 'estadosController@DeleteEstado');
 Route::get('estado', 'estadosController@ReadEstado');
@@ -24,6 +26,7 @@ Route::post('/alumno','alumnosController@InsertAlumno');
 Route::put('/alumno/{id}','alumnosController@UpdateAlumno');
 Route::Delete('/alumno/{id}','alumnosController@DeleteAlumno');
 Route::get('/alumno','alumnosController@ReadAlumno');
+Route::post('/login','alumnosController@ValidateLogin');
 Route::get('/alumno/{id}','alumnosController@ObtainAlumno');
 //Rutas de Maestros
 Route::post('/maestro','maestrosController@InsertMaestro');
@@ -71,6 +74,7 @@ Route::post('/asiga','alumno_gruposController@AsignarAlumno');
 Route::put('/asiga/{id}','alumno_gruposController@ReasignarAlumno');
 Route::get('/asiga','alumno_gruposController@ReadAsignacion');
 Route::get('/asiga/{id}','alumno_gruposController@ObtainAsignacion');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
