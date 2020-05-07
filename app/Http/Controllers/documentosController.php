@@ -16,9 +16,9 @@ class documentosController extends Controller
         $request->all();
         $doc = new Documento;    
         $doc->Codigo_Documento = $request->input('cod');     
-        $doc->ruta = $request->input('ruta');      
-        $doc->nombre = $request->input('nombre');   
-        $doc->Codigo_curso = $request->input('cod2');        
+        $doc->nombre = $request->$request->file('Doc')->getClientOriginalName();   
+        $request->file('Doc')->store('Documentos');   
+        $doc->Codigo_curso = $request->input('codd');        
         $x = $doc->save();  
         return $x;
        }

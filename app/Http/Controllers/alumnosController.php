@@ -102,30 +102,7 @@ class alumnosController extends Controller
 
         }
     }
-    public function ValidateLogin(Request $request)
-    {
-        $alumno = new Alumno;
-        $alumno = $this->ObtainAlumno($request->input('usuario'));
-        if($alumno)
-        {            
-            $al = new Credencial;
-            $al->Id = $alumno[0]->Id_Credencial;
-            $data = Credencial::select('credenciales.contra','alumnos.Id_Alumno')
-                ->join('alumnos','credenciales.Id','=','alumnos.Id_Credencial')
-                ->get();
-           if($data[0]->Id_Alumno == $request->input('usuario')&& $data[0]->contra == $request->input('contra'))
-           {
-               return"Vergon";
-           }
-           else
-           {
-            return"No Vergon";
-             }
-        }else
-        {
-            return "Ni mierda";
-        }
-    }
+   
     
     public function ObtainAlumno($id)
     {

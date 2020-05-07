@@ -10,7 +10,7 @@ header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Autho
 
 //Rutas de estado
 
-    Route::post('/estado','estadosController@InsertEstado');
+Route::post('/estado','estadosController@InsertEstado');
 Route::put('estado/{id}', 'estadosController@UpdateEstado');
 Route::delete('estado/{id}', 'estadosController@DeleteEstado');
 Route::get('estado', 'estadosController@ReadEstado');
@@ -26,7 +26,6 @@ Route::post('/alumno','alumnosController@InsertAlumno');
 Route::put('/alumno/{id}','alumnosController@UpdateAlumno');
 Route::Delete('/alumno/{id}','alumnosController@DeleteAlumno');
 Route::get('/alumno','alumnosController@ReadAlumno');
-Route::post('/login','alumnosController@ValidateLogin');
 Route::get('/alumno/{id}','alumnosController@ObtainAlumno');
 //Rutas de Maestros
 Route::post('/maestro','maestrosController@InsertMaestro');
@@ -74,7 +73,8 @@ Route::post('/asiga','alumno_gruposController@AsignarAlumno');
 Route::put('/asiga/{id}','alumno_gruposController@ReasignarAlumno');
 Route::get('/asiga','alumno_gruposController@ReadAsignacion');
 Route::get('/asiga/{id}','alumno_gruposController@ObtainAsignacion');
-
+//Login
+Route::post('/login','LoginController@ValidateLogin');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

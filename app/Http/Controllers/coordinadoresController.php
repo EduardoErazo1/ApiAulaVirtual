@@ -74,7 +74,7 @@ class coordinadoresController extends Controller
             $coordinador = Coordinador::where('Id', $id)->first(); 
             if($coordinador->count()>0)
             {
-                $return = DB::table('coordinadores  ')->where('Id', $id)->delete();
+                $return = DB::table('coordinadores  ')->where('Id_Coordinador', $id)->delete();
                 if($return){
                     return 'Eliminado correctamente';
                 }
@@ -88,8 +88,8 @@ class coordinadoresController extends Controller
     {
         try
         {
-            $maestro = DB::table('maestros')->select()->get();
-            return $maestro;
+            $coordinador = DB::table('coordinadores')->select()->get();
+            return $coordinador;
             
         }
         catch(Exception $e)
@@ -102,10 +102,10 @@ class coordinadoresController extends Controller
     public function ObtainCoordinador($id)
     {
         try {
-            $maestro = DB::table('maestros')->where('Id', $id)->get();
-            if($maestro ->Count()> 0)
+            $coordinador = DB::table('coordinadores')->where('Id_Coordinador', $id)->get();
+            if($coordinador ->Count()> 0)
             {
-                return $maestro;
+                return $coordinador;
             }
         } catch (Exception $e) {
             return var_dump($e->getMessage());

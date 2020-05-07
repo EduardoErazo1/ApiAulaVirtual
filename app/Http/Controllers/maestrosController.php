@@ -102,7 +102,7 @@ class maestrosController extends Controller
     public function ObtainMaestro($id)
     {
         try {
-            $maestro = DB::table('maestros')->where('Id', $id)->get();
+            $maestro = DB::table('maestros')->where('Id_Maestro', $id)->get();
             if($maestro ->Count()> 0)
             {
                 return $maestro;
