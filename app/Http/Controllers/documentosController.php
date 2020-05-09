@@ -5,28 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Documento;
+use App\Post;
+Use Illuminate\Support\Facades\Storage;
 use DB;
 
 class documentosController extends Controller
 {
     public function InsertDocumento(Request $request)
     {
-       try
-       {
-        $request->all();
-        $doc = new Documento;    
-        $doc->Codigo_Documento = $request->input('cod');     
-        $doc->nombre = $request->$request->file('Doc')->getClientOriginalName();   
-        $request->file('Doc')->store('Documentos');   
-        $doc->Codigo_curso = $request->input('codd');        
-        $x = $doc->save();  
-        return $x;
-       }
-       catch(Exception $e)
-       {
-        return var_dump($e->getMessage());
-
-       }
+        if($request->file('Doc'))
+        {
+            $doc = new Documento;    
+            $doc->Codigo_Documento = $request->input('cod');     
+            $doc->nombre =$request->file->getClientOriginalName();   
+            $request->file('Doc')->store();   
+            $doc->Codigo_curso = $request->input('codd');        
+            $x = $doc->save();  
+            return $x;
+        }      
         
     }
     public function UpdateDocumento(Request $request, $id)
@@ -96,5 +92,9 @@ class documentosController extends Controller
         } catch (Exception $e) {
             return var_dump($e->getMessage());
         }
+    }
+
+    public function store(Request $request){
+        return $request;
     }
 }
